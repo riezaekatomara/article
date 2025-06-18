@@ -291,7 +291,7 @@ const Home = () => {
       {/* Filter Section */}
       <div
         ref={articlesRef}
-        className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm"
+        className="bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
