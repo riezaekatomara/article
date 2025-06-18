@@ -46,11 +46,11 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
     };
   }, [isHovered]);
 
-  // Ambil beberapa kalimat pertama untuk preview (SUDAH DIPERBAIKI)
+  // Ambil beberapa kalimat pertama untuk preview
   const previewContent =
     (post.content || "").replace(/<[^>]+>/g, "").substring(0, 150) + "...";
 
-  // Enhanced gradient backgrounds dengan lebih banyak variasi
+  // Enhanced gradient backgrounds
   const gradientVariants = [
     {
       bg: "from-blue-50 via-indigo-50 to-purple-50",
@@ -81,7 +81,7 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
 
   const selectedVariant = gradientVariants[index % gradientVariants.length];
 
-  // Enhanced reading time calculation (SUDAH DIPERBAIKI)
+  // Enhanced reading time calculation
   const readingTime = Math.max(
     1,
     Math.ceil(
@@ -91,11 +91,11 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
 
   // Enhanced tag colors
   const tagColors = [
-    "bg-blue-100 text-blue-800 hover:bg-blue-200 hover:scale-105",
-    "bg-purple-100 text-purple-800 hover:bg-purple-200 hover:scale-105",
-    "bg-emerald-100 text-emerald-800 hover:bg-emerald-200 hover:scale-105",
-    "bg-rose-100 text-rose-800 hover:bg-rose-200 hover:scale-105",
-    "bg-amber-100 text-amber-800 hover:bg-amber-200 hover:scale-105",
+    "bg-blue-100 text-blue-800 hover:bg-blue-200",
+    "bg-purple-100 text-purple-800 hover:bg-purple-200",
+    "bg-emerald-100 text-emerald-800 hover:bg-emerald-200",
+    "bg-rose-100 text-rose-800 hover:bg-rose-200",
+    "bg-amber-100 text-amber-800 hover:bg-amber-200",
   ];
 
   const handleBookmarkClick = (e) => {
@@ -130,29 +130,29 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
             className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${selectedVariant.border} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
           ></div>
 
-          <div className="relative p-6 flex gap-6">
+          <div className="relative p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6">
             {/* Content */}
             <div className="flex-1">
               {/* Author info */}
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3">
                 <div
                   className={`w-10 h-10 rounded-full bg-gradient-to-br ${selectedVariant.accent} flex items-center justify-center text-white font-bold shadow-lg`}
                 >
                   {post.author.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center flex-wrap gap-x-2 text-xs sm:text-sm text-gray-600">
                     <span className="font-semibold text-gray-800">
                       {post.author}
                     </span>
-                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                    <span className="hidden sm:inline w-1 h-1 bg-gray-400 rounded-full"></span>
                     <time dateTime={post.date}>
                       {new Date(post.date).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                       })}
                     </time>
-                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                    <span className="hidden sm:inline w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span className="text-blue-600">
                       {readingTime} min read
                     </span>
@@ -161,7 +161,7 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
               </div>
 
               {/* Title */}
-              <h2 className="text-xl font-bold mb-3 text-gray-900 leading-tight">
+              <h2 className="text-lg sm:text-xl font-bold mb-2 text-gray-900 leading-tight">
                 <span
                   className={`bg-gradient-to-r ${selectedVariant.accent} bg-clip-text text-transparent hover:from-gray-900 hover:to-gray-700 transition-all duration-300`}
                 >
@@ -174,13 +174,13 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
                 {previewContent}
               </p>
 
-              {/* Tags (SUDAH DIPERBAIKI) */}
+              {/* Tags */}
               <div className="flex flex-wrap gap-2">
                 {Array.isArray(post.tags) &&
                   post.tags.slice(0, 3).map((tag, tagIndex) => (
                     <span
                       key={tag}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+                      className={`px-2 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
                         tagColors[tagIndex % tagColors.length]
                       }`}
                     >
@@ -191,7 +191,7 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-row sm:flex-col gap-2 self-start sm:self-center">
               <button
                 onClick={handleLikeClick}
                 className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
@@ -214,7 +214,6 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
                   />
                 </svg>
               </button>
-
               <button
                 onClick={handleBookmarkClick}
                 className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
@@ -267,19 +266,16 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
           transitionDelay: `${index * 0.1}s`,
         }}
       >
-        {/* Enhanced animated border gradient */}
+        {/* Animated border gradient */}
         <div
           className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${selectedVariant.border} opacity-0 group-hover:opacity-100 transition-all duration-700 blur-sm`}
         ></div>
-
-        {/* Shimmer effect */}
         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-        {/* Main content container */}
-        <div className="relative bg-white/95 backdrop-blur-sm rounded-3xl p-8 h-full shadow-lg">
-          {/* Enhanced floating action buttons */}
+        <div className="relative bg-white/95 backdrop-blur-sm rounded-3xl p-6 sm:p-8 h-full shadow-lg flex flex-col">
+          {/* Floating action buttons */}
           <div
-            className={`absolute top-6 right-6 flex gap-3 transition-all duration-500 ${
+            className={`absolute top-4 right-4 flex gap-2 sm:gap-3 transition-all duration-500 ${
               isHovered
                 ? "opacity-100 translate-y-0 scale-100"
                 : "opacity-0 -translate-y-4 scale-95"
@@ -287,14 +283,14 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
           >
             <button
               onClick={handleLikeClick}
-              className={`p-3 rounded-full transition-all duration-300 hover:scale-125 hover:rotate-12 ${
+              className={`p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-125 ${
                 isLiked
-                  ? "bg-red-500 text-white shadow-xl shadow-red-500/40 animate-pulse"
-                  : "bg-white/90 text-gray-600 hover:bg-red-50 hover:text-red-500 shadow-lg hover:shadow-xl"
+                  ? "bg-red-500 text-white shadow-xl shadow-red-500/40"
+                  : "bg-white/90 text-gray-600 hover:bg-red-50 hover:text-red-500 shadow-lg"
               }`}
             >
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill={isLiked ? "currentColor" : "none"}
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -307,17 +303,16 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
                 />
               </svg>
             </button>
-
             <button
               onClick={handleBookmarkClick}
-              className={`p-3 rounded-full transition-all duration-300 hover:scale-125 hover:rotate-12 ${
+              className={`p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-125 ${
                 isBookmarked
-                  ? "bg-yellow-500 text-white shadow-xl shadow-yellow-500/40 animate-pulse"
-                  : "bg-white/90 text-gray-600 hover:bg-yellow-50 hover:text-yellow-500 shadow-lg hover:shadow-xl"
+                  ? "bg-yellow-500 text-white shadow-xl shadow-yellow-500/40"
+                  : "bg-white/90 text-gray-600 hover:bg-yellow-50 hover:text-yellow-500 shadow-lg"
               }`}
             >
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill={isBookmarked ? "currentColor" : "none"}
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -332,125 +327,75 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
             </button>
           </div>
 
-          {/* Enhanced header with author info */}
-          <div className="flex items-center gap-4 mb-6">
-            <div
-              className={`w-14 h-14 rounded-full bg-gradient-to-br ${selectedVariant.accent} flex items-center justify-center text-white font-bold text-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110`}
-            >
-              {post.author.charAt(0).toUpperCase()}
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 text-sm text-gray-600 font-medium">
-                <span className="text-gray-800 font-bold text-base">
+          <div className="flex-1">
+            {/* Header with author info */}
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div
+                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br ${selectedVariant.accent} flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-xl`}
+              >
+                {post.author.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <div className="font-bold text-base sm:text-lg text-gray-800">
                   {post.author}
-                </span>
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full"></span>
-                <time
-                  dateTime={post.date}
-                  className="hover:text-gray-800 transition-colors duration-200"
-                >
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </time>
-                <span className="w-1.5 h-1.5 bg-gray-400 rounded-full"></span>
-                <span
-                  className={`text-transparent bg-gradient-to-r ${selectedVariant.accent} bg-clip-text font-semibold`}
-                >
-                  {readingTime} min read
-                </span>
+                </div>
+                <div className="text-xs sm:text-sm text-gray-500 flex items-center gap-2">
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+                  <span className="w-1.5 h-1.5 bg-gray-300 rounded-full"></span>
+                  <span>{readingTime} min read</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Enhanced title with better typography */}
-          <h2 className="text-2xl md:text-3xl font-black mb-5 text-gray-900 leading-tight">
-            <span
-              className={`bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent hover:bg-gradient-to-r hover:${selectedVariant.accent} hover:bg-clip-text transition-all duration-500 group-hover:scale-[1.02] inline-block`}
-            >
-              {post.title}
-            </span>
-          </h2>
-
-          {/* Enhanced preview content */}
-          <p className="text-gray-700 leading-relaxed mb-6 text-lg line-clamp-3 hover:text-gray-900 transition-colors duration-300">
-            {previewContent}
-          </p>
-
-          {/* Enhanced tags with better styling (SUDAH DIPERBAIKI) */}
-          <div className="flex flex-wrap gap-3 mb-6">
-            {Array.isArray(post.tags) &&
-              post.tags.slice(0, 3).map((tag, tagIndex) => (
-                <span
-                  key={tag}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold capitalize transition-all duration-300 hover:scale-110 cursor-pointer ${
-                    tagColors[tagIndex % tagColors.length]
-                  }`}
-                  style={{
-                    animationDelay: `${tagIndex * 0.1}s`,
-                  }}
-                >
-                  #{tag}
-                </span>
-              ))}
-            {Array.isArray(post.tags) && post.tags.length > 3 && (
-              <span className="px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-300 hover:scale-110 cursor-pointer">
-                +{post.tags.length - 3} more
+            {/* Title */}
+            <h2 className="text-xl sm:text-2xl font-black mb-3 text-gray-900 leading-tight">
+              <span
+                className={`bg-gradient-to-r from-gray-900 to-gray-800 bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:${selectedVariant.accent} transition-all duration-500`}
+              >
+                {post.title}
               </span>
-            )}
+            </h2>
+
+            {/* Preview content */}
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 line-clamp-3">
+              {previewContent}
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {Array.isArray(post.tags) &&
+                post.tags.slice(0, 2).map((tag, tagIndex) => (
+                  <span
+                    key={tag}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold capitalize transition-all duration-300 ${
+                      tagColors[tagIndex % tagColors.length]
+                    }`}
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              {Array.isArray(post.tags) && post.tags.length > 2 && (
+                <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
+                  +{post.tags.length - 2} more
+                </span>
+              )}
+            </div>
           </div>
 
-          {/* Enhanced CTA section */}
-          <div className="flex items-center justify-between pt-6 border-t border-gray-200">
-            <div className="flex items-center gap-6 text-sm text-gray-500">
-              <div className="flex items-center gap-2 hover:text-gray-700 transition-colors duration-200">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                <span className="font-medium">1.2k views</span>
-              </div>
-              <div className="flex items-center gap-2 hover:text-gray-700 transition-colors duration-200">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                  />
-                </svg>
-                <span className="font-medium">24 comments</span>
-              </div>
-            </div>
-
+          {/* CTA section */}
+          <div className="mt-auto pt-4 border-t border-gray-200">
             <div
-              className={`group/btn inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r ${selectedVariant.accent} hover:shadow-xl text-white font-bold rounded-full transition-all duration-300 hover:scale-105 transform hover:-translate-y-1`}
+              className={`group/btn inline-flex items-center justify-center w-full gap-3 px-6 py-3 bg-gradient-to-r ${selectedVariant.accent} hover:shadow-lg text-white font-bold rounded-full transition-all duration-300 hover:scale-105`}
             >
               <span>Read Article</span>
               <svg
-                className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-2"
+                className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -465,49 +410,15 @@ const ArticleCard = ({ post, index = 0, viewMode = "grid" }) => {
             </div>
           </div>
 
-          {/* Enhanced progress indicator */}
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-gray-100 rounded-b-3xl overflow-hidden">
+          {/* Progress indicator */}
+          <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-100 rounded-b-3xl overflow-hidden">
             <div
               className={`h-full bg-gradient-to-r ${selectedVariant.accent} transition-all duration-1000 ease-out`}
               style={{ width: `${readProgress}%` }}
             ></div>
           </div>
-
-          {/* Floating particles effect */}
-          {isHovered && (
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {Array.from({ length: 6 }, (_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60 animate-float"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    animationDelay: `${Math.random() * 2}s`,
-                    animationDuration: `${2 + Math.random() * 2}s`,
-                  }}
-                />
-              ))}
-            </div>
-          )}
         </div>
-
-        {/* CSS Animations */}
         <style jsx>{`
-          @keyframes float {
-            0%,
-            100% {
-              transform: translateY(0px) scale(1);
-              opacity: 0.6;
-            }
-            50% {
-              transform: translateY(-15px) scale(1.2);
-              opacity: 1;
-            }
-          }
-          .animate-float {
-            animation: float 3s ease-in-out infinite;
-          }
           .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;

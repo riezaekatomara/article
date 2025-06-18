@@ -1,28 +1,10 @@
-// src/data/users.js
-
+// NOTE: Di aplikasi nyata, jangan pernah menyimpan password dalam bentuk plain text.
+// Ini hanya untuk simulasi development. Gunakan hashing (misalnya bcrypt) dan salt untuk password.
 export const mockUsers = [
   {
     id: 1,
-    name: "Rieza",
-    email: "rieza@example.com",
-    password: "password123",
-  },
-  {
-    id: 2,
-    name: "Alex Morgan",
-    email: "alex@example.com",
-    password: "password123",
-  },
-  {
-    id: 3,
-    name: "Budi Santoso",
-    email: "budi@example.com",
-    password: "password123",
-  },
-  {
-    id: 4,
-    name: "Citra Lestari",
-    email: "citra@example.com",
-    password: "password123",
+    email: "riezaekatomara@gmail.com",
+    password: "riezae0123",
+    name: "Rieza Eka Tomara",
   },
 ];

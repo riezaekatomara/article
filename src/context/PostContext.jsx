@@ -7,7 +7,7 @@ export const PostProvider = ({ children }) => {
   // Menggunakan fungsi inisializer untuk useState agar hanya dijalankan sekali
   const [posts, setPosts] = useState(() => {
     try {
-      const storedPosts = localStorage.getItem("myMediumPosts");
+      const storedPosts = localStorage.getItem("CodeCraftIndoPosts");
       return storedPosts ? JSON.parse(storedPosts) : initialArticles;
     } catch (error) {
       console.error(
@@ -33,7 +33,7 @@ export const PostProvider = ({ children }) => {
   // Effect untuk menyimpan posts ke localStorage setiap kali 'posts' berubah
   useEffect(() => {
     try {
-      localStorage.setItem("myMediumPosts", JSON.stringify(posts));
+      localStorage.setItem("CodeCraftIndoPosts", JSON.stringify(posts));
       console.log("Posts saved to localStorage.");
     } catch (error) {
       console.error("Failed to save posts to localStorage:", error);

@@ -205,7 +205,7 @@ export const initialArticles = [
     id: "laravel-panduan-lengkap-pemula",
     title:
       "Laravel untuk Pemula: Panduan Lengkap dari Dasar hingga Membuat Aplikasi",
-    author: "Admin CodeCraft Indo",
+    author: "Rieza Eka Tomara",
     authorId: 1,
     date: "2025-06-18",
     tags: ["laravel", "web development", "pemula", "php", "tutorial", "crud"],
